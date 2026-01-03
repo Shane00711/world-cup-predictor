@@ -9,6 +9,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Custom animations */
@@ -41,6 +43,10 @@ body {
   --col-qf: clamp(220px, 19vw, 260px);
   --col-sf: clamp(200px, 17vw, 230px);
   --col-final: clamp(180px, 14vw, 210px);
+
+  /* Pool cards sizing */
+  --pool-card-w: clamp(220px, 20vw, 280px);
+  --pool-row-h: clamp(42px, 4.2vw, 56px);
 }
 
 .bracket-card {
@@ -51,3 +57,18 @@ body {
 .col-qf { width: var(--col-qf); }
 .col-sf { width: var(--col-sf); }
 .col-final { width: var(--col-final); }
+
+/* Pool cards */
+.pool-card { width: var(--pool-card-w); }
+.pool-row { min-height: var(--pool-row-h); }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}

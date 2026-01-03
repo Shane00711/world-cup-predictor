@@ -33,7 +33,7 @@ const PoolCard = ({ poolId, teams, onReorderTeam, thirdRank, onSetThirdRank }) =
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-3">
+    <div className="bg-white rounded-lg shadow-lg p-3 pool-card">
       <h3 className="text-lg font-bold text-center mb-2 text-rugby-green">
         Pool {poolId}
       </h3>

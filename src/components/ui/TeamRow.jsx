@@ -34,7 +34,7 @@ const TeamRow = ({
       onDrop={onDrop}
       onDragEnd={onDragEnd}
       className={`
-        flex items-center p-2 rounded-lg border-2 cursor-move transition-all text-xs
+        flex items-center p-2 rounded-lg border-2 cursor-move transition-all text-xs pool-row
         ${isDragging ? 'opacity-50 border-rugby-green' : 'border-gray-200'}
         ${isDraggedOver ? 'border-rugby-green border-t-4' : ''}
         ${getBackgroundClass()}
