@@ -1,6 +1,6 @@
 import React from 'react';
 import PoolCard from './PoolCard';
-import KnockoutBracket from './KnockoutBracket';
+import KnockoutBracket from './SymmetricKnockoutBracket';
 import MatchCard from './MatchCard';
 import ChampionDisplay from './ChampionDisplay';
 

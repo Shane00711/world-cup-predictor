@@ -30,3 +30,24 @@ body {
 .drag-over {
   border-top: 3px solid #006847;
 }
+
+/* Bracket layout helpers */
+:root {
+  /* Dynamic sizing: scales with viewport while clamping to reasonable bounds */
+  --bracket-card-h: clamp(90px, 9vw, 130px);
+  --bracket-gap: clamp(6px, 1.6vw, 16px);
+  /* Asymmetric reduction toward center */
+  --col-r16: clamp(240px, 22vw, 300px);
+  --col-qf: clamp(220px, 19vw, 260px);
+  --col-sf: clamp(200px, 17vw, 230px);
+  --col-final: clamp(180px, 14vw, 210px);
+}
+
+.bracket-card {
+  min-height: var(--bracket-card-h);
+}
+
+.col-r16 { width: var(--col-r16); }
+.col-qf { width: var(--col-qf); }
+.col-sf { width: var(--col-sf); }
+.col-final { width: var(--col-final); }
