@@ -108,18 +108,39 @@ const SymmetricKnockoutBracket = ({
           />
         </div>
 
-        {/* Mobile/Tablet stacked layout */}
-        <div className="md:hidden grid grid-cols-1 gap-3 py-2">
-          <StageSection title="Round of 16" matches={r16Left} stage="roundOf16" canSelect={true} onSelectWinner={onSelectWinner} columns={1} />
-          <StageSection title="Quarter-Finals" matches={qfLeft} stage="quarterFinals" canSelect={isRoundOf16Complete} onSelectWinner={onSelectWinner} columns={1} />
-          <StageSection title="Semi-Finals" matches={sfLeft} stage="semiFinals" canSelect={isQuarterFinalsComplete} onSelectWinner={onSelectWinner} columns={1} />
-          <div>
-            <h3 className="text-base font-bold text-center mb-2 text-rugby-green">Final</h3>
-            <MatchCard match={final} stage="final" canSelect={isSemiFinalsComplete} onSelectWinner={onSelectWinner} />
+        {/* Mobile/Tablet Scrollable Layout (Left-to-Right) */}
+        <div className="xl:hidden w-full max-w-[100vw] overflow-x-auto pb-4 no-scrollbar">
+          <div className="flex min-w-[900px] justify-between gap-4 px-2">
+             {/* Column 1: Round of 16 */}
+             <div className="flex flex-col justify-around gap-4 w-56">
+                <h4 className="text-sm font-bold text-center text-gray-500 mb-2 sticky left-0">Round of 16</h4>
+                {[...r16Left, ...r16Right].map(m => (
+                  <MatchCard key={m.id} match={m} stage="roundOf16" canSelect={true} onSelectWinner={onSelectWinner} />
+                ))}
+             </div>
+
+             {/* Column 2: Quarter Finals */}
+             <div className="flex flex-col justify-around gap-4 w-56">
+                <h4 className="text-sm font-bold text-center text-gray-500 mb-2">Quarter-Finals</h4>
+                {[...qfLeft, ...qfRight].map(m => (
+                  <MatchCard key={m.id} match={m} stage="quarterFinals" canSelect={isRoundOf16Complete} onSelectWinner={onSelectWinner} />
+                ))}
+             </div>
+
+             {/* Column 3: Semi Finals */}
+             <div className="flex flex-col justify-around gap-4 w-56">
+                <h4 className="text-sm font-bold text-center text-gray-500 mb-2">Semi-Finals</h4>
+                {[...sfLeft, ...sfRight].map(m => (
+                  <MatchCard key={m.id} match={m} stage="semiFinals" canSelect={isQuarterFinalsComplete} onSelectWinner={onSelectWinner} />
+                ))}
+             </div>
+
+             {/* Column 4: Final */}
+             <div className="flex flex-col justify-center gap-4 w-56">
+                <h4 className="text-sm font-bold text-center text-gray-500 mb-2">Final</h4>
+                <MatchCard match={final} stage="final" canSelect={isSemiFinalsComplete} onSelectWinner={onSelectWinner} />
+             </div>
           </div>
-          <StageSection title="Semi-Finals" matches={sfRight} stage="semiFinals" canSelect={isQuarterFinalsComplete} onSelectWinner={onSelectWinner} columns={1} />
-          <StageSection title="Quarter-Finals" matches={qfRight} stage="quarterFinals" canSelect={isRoundOf16Complete} onSelectWinner={onSelectWinner} columns={1} />
-          <StageSection title="Round of 16" matches={r16Right} stage="roundOf16" canSelect={true} onSelectWinner={onSelectWinner} columns={1} />
         </div>
       </div>
 

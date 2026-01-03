@@ -76,10 +76,12 @@ const FlowLayout = ({
         isRoundOf16Complete={isRoundOf16Complete}
         isQuarterFinalsComplete={isQuarterFinalsComplete}
         isSemiFinalsComplete={isSemiFinalsComplete}
+        thirdRankings={thirdRankings}
+        onSetThirdRank={onSetThirdRank}
       />
 
       {/* Action Buttons */}
-      <div className="flex flex-wrap justify-center gap-4 mt-8 px-4">
+      <div className="flex flex-wrap justify-center gap-4 mt-8 px-4 pb-8">
         <button
           onClick={onResetPools}
           className="px-5 py-2 bg-gray-500 hover:bg-gray-600 text-white font-bold rounded-lg transition-colors text-sm"
@@ -98,7 +100,7 @@ const FlowLayout = ({
 };
 
 /**
- * Mobile Layout - Stacked vertical layout for smaller screens
+ * Mobile Layout - Optimized for seamless viewing
  */
 const MobileLayout = ({
   pools,
@@ -115,84 +117,46 @@ const MobileLayout = ({
   thirdRankings,
   onSetThirdRank
 }) => (
-  <div className="xl:hidden px-4 space-y-6">
-    {/* All Pools in Grid */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {Object.keys(pools).map(poolId => (
-        <PoolCard
-          key={poolId}
-          poolId={poolId}
-          teams={pools[poolId]}
-          onReorderTeam={onReorderTeam}
-          thirdRank={thirdRankings?.[poolId] ?? null}
-          onSetThirdRank={onSetThirdRank}
-        />
-      ))}
-    </div>
-
-    {/* Round of 16 */}
-    <MobileStage
-      title="Round of 16"
-      matches={roundOf16}
-      stage="roundOf16"
-      canSelect={true}
-      onSelectWinner={onSelectWinner}
-    />
-
-    {/* Quarter Finals */}
-    <MobileStage
-      title="Quarter-Finals"
-      matches={quarterFinals}
-      stage="quarterFinals"
-      canSelect={isRoundOf16Complete}
-      onSelectWinner={onSelectWinner}
-    />
-
-    {/* Semi Finals */}
-    <MobileStage
-      title="Semi-Finals"
-      matches={semiFinals}
-      stage="semiFinals"
-      canSelect={isQuarterFinalsComplete}
-      onSelectWinner={onSelectWinner}
-    />
-
-    {/* Final */}
-    <div>
-      <h3 className="text-xl font-bold text-center mb-4 text-rugby-green">Final</h3>
-      <div className="max-w-sm mx-auto">
-        <MatchCard
-          match={final}
-          stage="final"
-          canSelect={isSemiFinalsComplete}
-          onSelectWinner={onSelectWinner}
-        />
+  <div className="xl:hidden flex flex-col gap-6">
+    {/* Pools - Horizontal Scroll */}
+    <div className="w-full max-w-[100vw]">
+      <div className="px-4 mb-2 flex items-center justify-between">
+        <h3 className="text-lg font-bold text-rugby-green">Pool Stage</h3>
+        <span className="text-xs text-gray-400">Swipe →</span>
+      </div>
+      <div className="flex overflow-x-auto pb-4 px-4 gap-4 snap-x snap-mandatory no-scrollbar">
+        {Object.keys(pools).map(poolId => (
+          <div key={poolId} className="snap-center flex-shrink-0 w-[85vw] sm:w-[350px]">
+            <PoolCard
+              poolId={poolId}
+              teams={pools[poolId]}
+              onReorderTeam={onReorderTeam}
+              thirdRank={thirdRankings?.[poolId] ?? null}
+              onSetThirdRank={onSetThirdRank}
+            />
+          </div>
+        ))}
       </div>
     </div>
 
-    {/* Champion */}
-    <ChampionDisplay champion={champion} />
-  </div>
-);
-
-/**
- * Mobile Stage Section
- */
-const MobileStage = ({ title, matches, stage, canSelect, onSelectWinner }) => (
-  <div>
-    <h3 className="text-xl font-bold text-center mb-4 text-rugby-green">{title}</h3>
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      {matches.map((match) => (
-        <MatchCard
-          key={match.id}
-          match={match}
-          stage={stage}
-          canSelect={canSelect}
-          onSelectWinner={onSelectWinner}
-        />
-      ))}
+    {/* Bracket - Uses the responsive KnockoutBracket */}
+    <div className="w-full">
+      <div className="px-4 mb-2 flex items-center justify-between">
+        <h3 className="text-lg font-bold text-rugby-green">Knockout Stage</h3>
+        <span className="text-xs text-gray-400">Swipe →</span>
+      </div>
+      <KnockoutBracket
+        roundOf16={roundOf16}
+        quarterFinals={quarterFinals}
+        semiFinals={semiFinals}
+        final={final}
+        champion={champion}
+        onSelectWinner={onSelectWinner}
+        isRoundOf16Complete={isRoundOf16Complete}
+        isQuarterFinalsComplete={isQuarterFinalsComplete}
+        isSemiFinalsComplete={isSemiFinalsComplete}
+      />
     </div>
   </div>
 );
-
 export default FlowLayout;
