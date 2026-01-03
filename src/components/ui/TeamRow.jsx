@@ -13,7 +13,9 @@ const TeamRow = ({
   onDragStart, 
   onDragOver, 
   onDrop, 
-  onDragEnd 
+  onDragEnd,
+  thirdRank,
+  onChangeThirdRank
 }) => {
   const isQualified = position <= 2;
   const isThirdPlace = position === 3;
@@ -51,6 +53,23 @@ const TeamRow = ({
       
       {/* Team Name */}
       <div className="flex-1 font-semibold text-gray-800">{team.name}</div>
+
+      {/* Third-place ranking selector */}
+      {isThirdPlace && (
+        <div className="flex-shrink-0 ml-2">
+          <label className="sr-only">Best 3rd Rank</label>
+          <select
+            value={thirdRank ?? ''}
+            onChange={(e) => onChangeThirdRank?.(e.target.value ? Number(e.target.value) : null)}
+            className="text-xs bg-white border border-yellow-400 rounded px-2 py-1"
+          >
+            <option value="">Rank</option>
+            {[1,2,3,4,5,6].map(n => (
+              <option key={n} value={n}>{n}</option>
+            ))}
+          </select>
+        </div>
+      )}
       
       {/* Drag Handle */}
       <div className="flex-shrink-0 text-gray-400">

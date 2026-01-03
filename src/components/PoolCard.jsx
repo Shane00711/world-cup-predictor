@@ -5,7 +5,7 @@ import { TeamRow } from './ui';
  * Pool Card Component
  * Displays a single pool with drag-and-drop team ranking
  */
-const PoolCard = ({ poolId, teams, onReorderTeam }) => {
+const PoolCard = ({ poolId, teams, onReorderTeam, thirdRank, onSetThirdRank }) => {
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [dragOverIndex, setDragOverIndex] = useState(null);
 
@@ -49,6 +49,8 @@ const PoolCard = ({ poolId, teams, onReorderTeam }) => {
             onDragOver={(e) => handleDragOver(e, index)}
             onDrop={(e) => handleDrop(e, index)}
             onDragEnd={handleDragEnd}
+            thirdRank={index === 2 ? thirdRank : undefined}
+            onChangeThirdRank={index === 2 ? (rank) => onSetThirdRank?.(poolId, rank) : undefined}
           />
         ))}
       </div>

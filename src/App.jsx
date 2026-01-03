@@ -39,6 +39,8 @@ function App() {
           isRoundOf16Complete={tournament.isRoundOf16Complete}
           isQuarterFinalsComplete={tournament.isQuarterFinalsComplete}
           isSemiFinalsComplete={tournament.isSemiFinalsComplete}
+          thirdRankings={tournament.thirdRankings}
+          onSetThirdRank={tournament.setThirdRank}
         />
       </main>
 
