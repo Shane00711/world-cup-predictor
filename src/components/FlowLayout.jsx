@@ -29,7 +29,7 @@ const FlowLayout = ({
   onSetThirdRank
 }) => {
   return (
-    <div className="w-full">
+    <div className="w-full bg-slate-900">
       {/* Desktop Layout */}
       <div className="hidden xl:block">
         <div className="flex items-start justify-between gap-3 px-2">
@@ -64,10 +64,9 @@ const FlowLayout = ({
         </div>
       </div>
 
-      <div className="w-full">
+      <div className="w-full block md:hidden">
       {/* Mobile Layout */}
         <MobileView
-          className="block xl:hidden"
           pools={pools}
           roundOf16={roundOf16}
           quarterFinals={quarterFinals}
@@ -85,19 +84,21 @@ const FlowLayout = ({
       </div>
 
       {/* Action Buttons */}
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="py-6 bg-slate-900">
+        <div className="flex flex-wrap justify-center gap-4">
         <button
           onClick={onResetPools}
-          className="px-5 py-2 bg-gray-500 hover:bg-gray-600 text-white font-bold rounded-lg transition-colors text-sm"
+          className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-lg transition-colors text-sm border border-slate-600"
         >
           Reset Pools
         </button>
         <button
           onClick={onResetBracket}
-          className="px-5 py-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition-colors text-sm"
+          className="px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg transition-colors text-sm border border-red-500"
         >
           Reset Bracket
         </button>
+        </div>
       </div>
     </div>
   );
