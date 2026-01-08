@@ -23,6 +23,22 @@ body {
   animation: fadeIn 0.5s ease-out;
 }
 
+/* Splash Screen Animations */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
 /* Dragging styles */
 .dragging {
   opacity: 0.5;

@@ -24,7 +24,7 @@ const SymmetricKnockoutBracket = ({
   const sfRight = semiFinals.slice(1, 2);
 
   return (
-    <div className="flex flex-col items-center px-2 md:px-4 w-full">
+    <div className="flex flex-col items-center px-2 md:px-4 w-full bg-slate-900 py-6">
       <div className="w-full mx-auto overflow-x-auto" style={{ maxWidth: 'min(1400px, 96vw)' }}>
         <div
           className="hidden md:flex md:flex-nowrap items-stretch justify-center"
@@ -65,7 +65,7 @@ const SymmetricKnockoutBracket = ({
 
           {/* Final */}
           <div className="w-full md:w-auto flex flex-col justify-center col-final flex-shrink-1">
-            <h3 className="text-base font-bold text-center mb-2 text-rugby-green">Final</h3>
+            <h3 className="text-lg font-bold text-center mb-4 text-orange-400 uppercase tracking-wider">Final</h3>
             <MatchCard
               match={final}
               stage="final"
@@ -113,7 +113,7 @@ const SymmetricKnockoutBracket = ({
           <div className="flex min-w-[900px] justify-between gap-4 px-2">
              {/* Column 1: Round of 16 */}
              <div className="flex flex-col justify-around gap-4 w-56">
-                <h4 className="text-sm font-bold text-center text-gray-500 mb-2 sticky left-0">Round of 16</h4>
+                <h4 className="text-sm font-bold text-center text-slate-400 mb-2 sticky left-0 uppercase tracking-wider">Round of 16</h4>
                 {[...r16Left, ...r16Right].map(m => (
                   <MatchCard key={m.id} match={m} stage="roundOf16" canSelect={true} onSelectWinner={onSelectWinner} />
                 ))}
@@ -121,7 +121,7 @@ const SymmetricKnockoutBracket = ({
 
              {/* Column 2: Quarter Finals */}
              <div className="flex flex-col justify-around gap-4 w-56">
-                <h4 className="text-sm font-bold text-center text-gray-500 mb-2">Quarter-Finals</h4>
+                <h4 className="text-sm font-bold text-center text-slate-400 mb-2 uppercase tracking-wider">Quarter-Finals</h4>
                 {[...qfLeft, ...qfRight].map(m => (
                   <MatchCard key={m.id} match={m} stage="quarterFinals" canSelect={isRoundOf16Complete} onSelectWinner={onSelectWinner} />
                 ))}
@@ -129,7 +129,7 @@ const SymmetricKnockoutBracket = ({
 
              {/* Column 3: Semi Finals */}
              <div className="flex flex-col justify-around gap-4 w-56">
-                <h4 className="text-sm font-bold text-center text-gray-500 mb-2">Semi-Finals</h4>
+                <h4 className="text-sm font-bold text-center text-slate-400 mb-2 uppercase tracking-wider">Semi-Finals</h4>
                 {[...sfLeft, ...sfRight].map(m => (
                   <MatchCard key={m.id} match={m} stage="semiFinals" canSelect={isQuarterFinalsComplete} onSelectWinner={onSelectWinner} />
                 ))}
@@ -137,7 +137,7 @@ const SymmetricKnockoutBracket = ({
 
              {/* Column 4: Final */}
              <div className="flex flex-col justify-center gap-4 w-56">
-                <h4 className="text-sm font-bold text-center text-gray-500 mb-2">Final</h4>
+                <h4 className="text-sm font-bold text-center text-orange-400 mb-2 uppercase tracking-wider">Final</h4>
                 <MatchCard match={final} stage="final" canSelect={isSemiFinalsComplete} onSelectWinner={onSelectWinner} />
              </div>
           </div>
@@ -168,7 +168,7 @@ const StageSection = ({
 
   return (
     <div className={`w-full md:w-auto ${maxWidth} mx-auto ${widthClass} flex flex-col justify-center flex-shrink-0`}>
-      <h3 className="text-base font-bold text-center mb-2 text-rugby-green">{title}</h3>
+      <h3 className="text-base font-bold text-center mb-4 text-blue-400 uppercase tracking-wider">{title}</h3>
       <div className={`grid ${gridCols[columns]} gap-2 w-full`}>
         {matches.map((match) => (
           <div key={match.id} className="relative bracket-card">
