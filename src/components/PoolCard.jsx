@@ -5,7 +5,7 @@ import { TeamRow } from './ui';
  * Pool Card Component
  * Displays a single pool with drag-and-drop team ranking
  */
-const PoolCard = ({ poolId, teams, onReorderTeam, thirdRank, onSetThirdRank }) => {
+const PoolCard = ({ poolId, teams, onReorderTeam, thirdRank, onSetThirdRank, thirdRankings }) => {
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [dragOverIndex, setDragOverIndex] = useState(null);
 
@@ -32,6 +32,14 @@ const PoolCard = ({ poolId, teams, onReorderTeam, thirdRank, onSetThirdRank }) =
     setDragOverIndex(null);
   };
 
+  // Get already allocated rankings from other pools
+  const getAllocatedRankings = () => {
+    if (!thirdRankings) return [];
+    return Object.entries(thirdRankings)
+      .filter(([otherPoolId, ranking]) => otherPoolId !== poolId && ranking !== null)
+      .map(([, ranking]) => ranking);
+  };
+
   return (
     <div className="bg-slate-800 rounded-lg border border-slate-700 shadow-lg p-3 pool-card">
       <div className="bg-slate-900/50 py-1.5 px-3 -mx-3 -mt-3 mb-3 border-b border-slate-700 flex justify-between items-center">
@@ -54,6 +62,7 @@ const PoolCard = ({ poolId, teams, onReorderTeam, thirdRank, onSetThirdRank }) =
             onDragEnd={handleDragEnd}
             thirdRank={index === 2 ? thirdRank : undefined}
             onChangeThirdRank={index === 2 ? (rank) => onSetThirdRank?.(poolId, rank) : undefined}
+            allocatedRankings={index === 2 ? getAllocatedRankings() : []}
           />
         ))}
       </div>

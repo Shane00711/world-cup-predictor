@@ -157,7 +157,10 @@ const MobileView = ({
 
         {/* Quarter Finals (Scrollable) */}
         <div className="flex flex-col gap-2">
-            <div className="text-blue-400 font-bold text-xs uppercase tracking-widest px-4">Quarter-Finals</div>
+            <div className="text-blue-400 flex font-bold text-xs uppercase tracking-widest px-4 justify-between">
+                Quarter-Finals
+                <span className="text-[10px] text-slate-600 uppercase">Scroll Left ➡️</span>
+            </div>
             <div className="overflow-x-auto pb-4 px-4 -mx-2 no-scrollbar">
                <div className="flex gap-4 min-w-max">
                  {quarterFinals.map(match => (
@@ -175,7 +178,10 @@ const MobileView = ({
 
         {/* Round of 16 (Scrollable) */}
         <div className="flex flex-col gap-2">
-            <div className="text-slate-500 font-bold text-xs uppercase tracking-widest px-4">Round of 16</div>
+            <div className="text-slate-500 font-bold text-xs uppercase tracking-widest px-4 justify-between flex">
+                Round of 16
+                <span className="text-[10px] text-slate-600 uppercase">Scroll Left ➡️</span>
+                </div>
             <div className="overflow-x-auto pb-4 px-4 -mx-2 no-scrollbar">
                <div className="flex gap-4 min-w-max">
                  {roundOf16.map(match => (
@@ -208,6 +214,7 @@ const MobileView = ({
               onReorderTeam={onReorderTeam}
               thirdRank={thirdRankings?.[poolId] ?? null}
               onSetThirdRank={onSetThirdRank}
+              thirdRankings={thirdRankings}
             />
           ))}
         </div>

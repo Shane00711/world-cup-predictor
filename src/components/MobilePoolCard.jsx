@@ -4,7 +4,7 @@ import { TeamFlag } from './ui';
 /**
  * MobilePoolCard - Dark theme, compact pool card for mobile view
  */
-const MobilePoolCard = ({ poolId, teams, onReorderTeam, thirdRank, onSetThirdRank }) => {
+const MobilePoolCard = ({ poolId, teams, onReorderTeam, thirdRank, onSetThirdRank, thirdRankings }) => {
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [dragOverIndex, setDragOverIndex] = useState(null);
 
@@ -29,6 +29,14 @@ const MobilePoolCard = ({ poolId, teams, onReorderTeam, thirdRank, onSetThirdRan
   const handleDragEnd = () => {
     setDraggedIndex(null);
     setDragOverIndex(null);
+  };
+
+  // Get already allocated rankings from other pools
+  const getAllocatedRankings = () => {
+    if (!thirdRankings) return [];
+    return Object.entries(thirdRankings)
+      .filter(([otherPoolId, ranking]) => otherPoolId !== poolId && ranking !== null)
+      .map(([, ranking]) => ranking);
   };
 
   return (
@@ -92,9 +100,22 @@ const MobilePoolCard = ({ poolId, teams, onReorderTeam, thirdRank, onSetThirdRan
                     className="bg-slate-900 text-[10px] text-yellow-400 border border-yellow-500/30 rounded px-1 py-0.5 outline-none focus:border-yellow-500"
                   >
                     <option value="">R</option>
-                    {[1,2,3,4,5,6].map(n => (
-                      <option key={n} value={n}>{n}</option>
-                    ))}
+                    {(() => {
+                      const allocatedRankings = getAllocatedRankings();
+                      return [1,2,3,4,5,6].map(n => {
+                        const isAllocated = allocatedRankings.includes(n);
+                        return (
+                          <option 
+                            key={n} 
+                            value={n} 
+                            disabled={isAllocated}
+                            className={isAllocated ? 'text-slate-600' : ''}
+                          >
+                            {n}{isAllocated ? ' (taken)' : ''}
+                          </option>
+                        );
+                      });
+                    })()}
                   </select>
                 </div>
               )}
