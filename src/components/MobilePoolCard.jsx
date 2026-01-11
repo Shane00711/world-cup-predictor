@@ -100,19 +100,22 @@ const MobilePoolCard = ({ poolId, teams, onReorderTeam, thirdRank, onSetThirdRan
                     className="bg-slate-900 text-[10px] text-yellow-400 border border-yellow-500/30 rounded px-1 py-0.5 outline-none focus:border-yellow-500"
                   >
                     <option value="">R</option>
-                    {[1,2,3,4,5,6].map(n => {
-                      const isAllocated = getAllocatedRankings().includes(n);
-                      return (
-                        <option 
-                          key={n} 
-                          value={n} 
-                          disabled={isAllocated}
-                          className={isAllocated ? 'text-slate-600' : ''}
-                        >
-                          {n}{isAllocated ? ' (taken)' : ''}
-                        </option>
-                      );
-                    })}
+                    {(() => {
+                      const allocatedRankings = getAllocatedRankings();
+                      return [1,2,3,4,5,6].map(n => {
+                        const isAllocated = allocatedRankings.includes(n);
+                        return (
+                          <option 
+                            key={n} 
+                            value={n} 
+                            disabled={isAllocated}
+                            className={isAllocated ? 'text-slate-600' : ''}
+                          >
+                            {n}{isAllocated ? ' (taken)' : ''}
+                          </option>
+                        );
+                      });
+                    })()}
                   </select>
                 </div>
               )}
