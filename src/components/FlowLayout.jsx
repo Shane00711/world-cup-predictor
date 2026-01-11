@@ -34,9 +34,9 @@ const FlowLayout = ({
         <div className="flex items-start justify-between gap-3 px-2">
           {/* Left Pools (A, B, C) */}
           <div className="flex flex-col gap-3 flex-shrink-0 w-64">
-            <PoolCard poolId="A" teams={pools.A} onReorderTeam={onReorderTeam} thirdRank={thirdRankings?.A ?? null} onSetThirdRank={onSetThirdRank} />
-            <PoolCard poolId="B" teams={pools.B} onReorderTeam={onReorderTeam} thirdRank={thirdRankings?.B ?? null} onSetThirdRank={onSetThirdRank} />
-            <PoolCard poolId="C" teams={pools.C} onReorderTeam={onReorderTeam} thirdRank={thirdRankings?.C ?? null} onSetThirdRank={onSetThirdRank} />
+            <PoolCard poolId="A" teams={pools.A} onReorderTeam={onReorderTeam} thirdRank={thirdRankings?.A ?? null} onSetThirdRank={onSetThirdRank} thirdRankings={thirdRankings} />
+            <PoolCard poolId="B" teams={pools.B} onReorderTeam={onReorderTeam} thirdRank={thirdRankings?.B ?? null} onSetThirdRank={onSetThirdRank} thirdRankings={thirdRankings} />
+            <PoolCard poolId="C" teams={pools.C} onReorderTeam={onReorderTeam} thirdRank={thirdRankings?.C ?? null} onSetThirdRank={onSetThirdRank} thirdRankings={thirdRankings} />
           </div>
 
           {/* Center - Knockout Bracket */}
@@ -56,9 +56,9 @@ const FlowLayout = ({
 
           {/* Right Pools (D, E, F) */}
           <div className="flex flex-col gap-3 flex-shrink-0 w-64">
-            <PoolCard poolId="D" teams={pools.D} onReorderTeam={onReorderTeam} thirdRank={thirdRankings?.D ?? null} onSetThirdRank={onSetThirdRank} />
-            <PoolCard poolId="E" teams={pools.E} onReorderTeam={onReorderTeam} thirdRank={thirdRankings?.E ?? null} onSetThirdRank={onSetThirdRank} />
-            <PoolCard poolId="F" teams={pools.F} onReorderTeam={onReorderTeam} thirdRank={thirdRankings?.F ?? null} onSetThirdRank={onSetThirdRank} />
+            <PoolCard poolId="D" teams={pools.D} onReorderTeam={onReorderTeam} thirdRank={thirdRankings?.D ?? null} onSetThirdRank={onSetThirdRank} thirdRankings={thirdRankings} />
+            <PoolCard poolId="E" teams={pools.E} onReorderTeam={onReorderTeam} thirdRank={thirdRankings?.E ?? null} onSetThirdRank={onSetThirdRank} thirdRankings={thirdRankings} />
+            <PoolCard poolId="F" teams={pools.F} onReorderTeam={onReorderTeam} thirdRank={thirdRankings?.F ?? null} onSetThirdRank={onSetThirdRank} thirdRankings={thirdRankings} />
           </div>
         </div>
       </div>

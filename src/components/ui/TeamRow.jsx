@@ -15,7 +15,8 @@ const TeamRow = ({
   onDrop, 
   onDragEnd,
   thirdRank,
-  onChangeThirdRank
+  onChangeThirdRank,
+  allocatedRankings = []
 }) => {
   const isQualified = position <= 2;
   const isThirdPlace = position === 3;
@@ -64,9 +65,19 @@ const TeamRow = ({
             className="text-xs bg-white border border-yellow-400 rounded px-2 py-1"
           >
             <option value="">Rank</option>
-            {[1,2,3,4,5,6].map(n => (
-              <option key={n} value={n}>{n}</option>
-            ))}
+            {[1,2,3,4,5,6].map(n => {
+              const isAllocated = allocatedRankings.includes(n);
+              return (
+                <option 
+                  key={n} 
+                  value={n} 
+                  disabled={isAllocated}
+                  className={isAllocated ? 'text-slate-600' : ''}
+                >
+                  {n}{isAllocated ? ' (taken)' : ''}
+                </option>
+              );
+            })}
           </select>
         </div>
       )}
