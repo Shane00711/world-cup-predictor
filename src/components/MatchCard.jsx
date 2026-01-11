@@ -11,8 +11,8 @@ const MatchCard = ({ match, stage, canSelect, onSelectWinner }) => {
   // Show placeholder if teams aren't set yet
   if (!team1 || !team2) {
     return (
-      <div className="bg-gray-100 rounded-lg p-2 text-center text-gray-400">
-        <p className="text-xs">TBD</p>
+      <div className="bg-slate-800 border border-slate-700 rounded-lg p-3 text-center text-slate-500">
+        <p className="text-sm">TBD</p>
       </div>
     );
   }
@@ -24,9 +24,11 @@ const MatchCard = ({ match, stage, canSelect, onSelectWinner }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md border-2 border-gray-200 p-2">
+    <div className="bg-slate-800 border border-slate-700 rounded-lg shadow-lg p-3">
       {/* Match Label */}
-      <div className="text-xs font-semibold text-gray-500 mb-1 text-center">
+      <div className={`text-xs font-bold uppercase tracking-wider mb-2 text-center
+        ${match.label?.includes('Final') ? 'text-orange-400' : 'text-slate-400'}
+      `}>
         {match.label}
       </div>
 
@@ -39,7 +41,7 @@ const MatchCard = ({ match, stage, canSelect, onSelectWinner }) => {
       />
 
       {/* VS Divider */}
-      <div className="text-center text-gray-400 text-xs my-0.5">vs</div>
+      <div className="text-center text-slate-500 text-xs font-bold my-1">VS</div>
 
       {/* Team 2 */}
       <TeamOption
@@ -59,19 +61,19 @@ const TeamOption = ({ team, isWinner, canSelect, onClick }) => (
   <div
     onClick={onClick}
     className={`
-      flex items-center p-1.5 rounded-md transition-all cursor-pointer text-xs
+      flex items-center p-2 rounded-lg transition-all cursor-pointer text-sm
       ${isWinner 
-        ? 'bg-rugby-green text-white font-bold ring-2 ring-rugby-gold' 
-        : 'bg-gray-50 hover:bg-gray-100 border border-gray-300'
-      }
+        ? 'bg-indigo-900/80 border border-indigo-500/50 text-white font-bold' 
+        : 'bg-slate-800/50 hover:bg-slate-700 border border-transparent text-slate-200'
+     }
       ${!canSelect ? 'cursor-not-allowed opacity-60' : ''}
     `}
   >
     <span className="flex-shrink-0 mr-3">
       <TeamFlag flag={team.flag} size="md" />
     </span>
-    <span className="flex-1 truncate">{team.name}</span>
-    {isWinner && <span className="text-rugby-gold text-xs">✓</span>}
+    <span className="flex-1 truncate font-medium">{team.name}</span>
+    {isWinner && <span className="text-orange-400">✓</span>}
   </div>
 );
 
